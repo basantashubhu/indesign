@@ -11,7 +11,7 @@ class Designmap
      */
     public $document;
     public $file = 'designmap.xml';
-    public static $cwd = 'dtxapi/data/idml';
+    public static $cwd = null;
 
     public function __construct($file)
     {
@@ -22,7 +22,7 @@ class Designmap
 
     public static function get()
     {
-        return new self(storage_path(static::$cwd . "/designmap.xml"));
+        return new self(static::$cwd . "/designmap.xml");
     }
 
     public function addSpread(Spread $spread)
@@ -45,7 +45,7 @@ class Designmap
         // clear spreads
         foreach($this->findNs('Spread') as $spread) {
             $spread->parentNode->removeChild($spread);
-            $file = storage_path(static::$cwd . '/' . $spread->getAttribute('src'));
+            $file = static::$cwd . '/' . $spread->getAttribute('src');
             file_exists($file) && unlink($file);
         }
     }
@@ -54,6 +54,6 @@ class Designmap
     {
         $this->document->preserveWhiteSpace = false;
         $this->document->formatOutput = true;
-        $this->document->save(storage_path(static::$cwd . "/designmap.xml"));
+        $this->document->save(static::$cwd . "/designmap.xml");
     }
 }

@@ -18,8 +18,6 @@ class Image extends Tag
             Attribute::CHARACTER_STYLE => Attribute::CHAR_STYLE_NONE
         ]);
 
-        $cwd = storage_path('dtxapi');
-
         $this->content = ArrayToXml::convert([
             '@attributes' => [
                 'Self' => "{$id}r",
@@ -106,8 +104,7 @@ class Image extends Tag
     private function addLinks()
     {
         // download images
-        $cwd = storage_path('dtxapi');
-        $outDir = $cwd . '/data/idml';
+        $outDir = Designmap::$cwd;
 
         !is_dir("$outDir/Links") && mkdir("$outDir/Links", 0777, true);
 

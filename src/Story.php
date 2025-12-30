@@ -48,6 +48,6 @@ class Story
 
     public function save()
     {
-        file_put_contents(storage_path("dtxapi/data/idml/Stories/Story_$this->id.xml"), (string) $this);
+        file_put_contents(Designmap::$cwd ."/Stories/Story_$this->id.xml", (string) $this);
     }
 }

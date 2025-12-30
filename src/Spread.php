@@ -9,13 +9,12 @@ class Spread
     protected $document;
     protected static $textFrameId = 1000;
     public $file;
-    protected static $cwd = 'dtxapi/data/idml/Spreads';
 
     public function __construct($file)
     {
         $this->document = new \DOMDocument('1.0', 'UTF-8');
         $this->document->standalone = true;
-        file_exists(storage_path(static::$cwd . "/$file")) && $this->document->load(storage_path(static::$cwd . "/$file"));
+        file_exists(Designmap::$cwd . "/Spreads/$file") && $this->document->load(Designmap::$cwd . "/Spreads/$file");
         $this->file = $file;
     }
 
@@ -317,7 +316,7 @@ class Spread
 
     public static function all()
     {
-        $dir = storage_path(static::$cwd);
+        $dir = Designmap::$cwd . '/Spreads';
 
         return array_map(function ($file) {
             return new self(basename($file));
@@ -328,6 +327,6 @@ class Spread
     {
         $this->document->formatOutput = true;
         $this->document->preserveWhiteSpace = false;
-        $this->document->save(storage_path(static::$cwd . "/$this->file"));
+        $this->document->save(Designmap::$cwd . "/Spreads/$this->file");
     }
 }
