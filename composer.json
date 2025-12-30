@@ -1,0 +1,21 @@
+{
+    "name": "dtx/indesign",
+    "description": "InDesign file export",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Basanta Tajpuriya",
+            "email": "basanta@systha.com"
+        }
+    ],
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Indesign\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
