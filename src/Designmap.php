@@ -1,6 +1,6 @@
 <?php
 
-namespace Indesign;
+namespace Santa\Indesign;
 
 class Designmap
 {

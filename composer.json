@@ -1,5 +1,5 @@
 {
-    "name": "dtx/indesign",
+    "name": "basanta/indesign",
     "description": "InDesign file export",
     "type": "library",
     "license": "MIT",
@@ -13,7 +13,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Indesign\\": "src/"
+            "Santa\\Indesign\\": "src/"
         }
     },
     "minimum-stability": "dev",
