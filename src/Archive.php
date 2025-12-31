@@ -40,6 +40,10 @@ class Archive
         if (file_exists($outIdmlPath))
             unlink($outIdmlPath);
 
+        if(!is_dir(dirname($outIdmlPath))) {
+            mkdir(dirname($outIdmlPath), 0777, true);
+        }
+
         $zip = new \ZipArchive();
         if ($zip->open($outIdmlPath, \ZipArchive::CREATE) !== true) {
             throw new \RuntimeException("Cannot create IDML: $outIdmlPath");

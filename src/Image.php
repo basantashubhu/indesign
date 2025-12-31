@@ -91,7 +91,7 @@ class Image extends Tag
                 'Link' => [
                     '@attributes' => [
                         'Self' => "{$id}0b",
-                        'LinkResourceURI' => "file:Links/picture$index.png",
+                        'LinkResourceURI' => "file:Links/picture$id$index.png",
                         'LinkResourceFormat' => '$ID/Portable Network Graphics (PNG)'
                     ]
                 ]
@@ -109,7 +109,7 @@ class Image extends Tag
         !is_dir("$outDir/Links") && mkdir("$outDir/Links", 0777, true);
 
         $file = file_get_contents($this->url);
-        file_put_contents("$outDir/Links/picture$this->index.png", $file);
+        file_put_contents("$outDir/Links/picture{$this->id}{$this->index}.png", $file);
 
 
         $linkXml = new \DOMDocument('1.0', 'UTF-8');
@@ -126,17 +126,17 @@ class Image extends Tag
 
         $link = $linkXml->createElement('Link');
         $link->setAttribute('Self', "{$this->id}0b");
-        $link->setAttribute('Name', "picture$this->index.png");
+        $link->setAttribute('Name', "picture$this->id$this->index.png");
         $link->setAttribute('LinkResourceFormat', '$ID/Portable Network Graphics (PNG)');
-        $link->setAttribute('LinkResourceURI', "file:Links/picture$this->index.png");
+        $link->setAttribute('LinkResourceURI', "file:Links/picture$this->id$this->index.png");
         $link->setAttribute('Status', 'Normal');
         $linkXml->documentElement->appendChild($link);
 
                 $link = $linkXml->createElement('Link');
         $link->setAttribute('Self', "{$this->id}02b");
-        $link->setAttribute('Name', "picture$this->index.png");
+        $link->setAttribute('Name', "picture$this->id$this->index.png");
         $link->setAttribute('LinkResourceFormat', '$ID/Portable Network Graphics (PNG)');
-        $link->setAttribute('LinkResourceURI', "file:Links/picture2$this->index.png");
+        $link->setAttribute('LinkResourceURI', "file:Links/picture2$this->id$this->index.png");
         $link->setAttribute('Status', 'Normal');
         $linkXml->documentElement->appendChild($link);
 
@@ -151,7 +151,7 @@ class Image extends Tag
         $graphic->setAttribute('Self', "{$this->id}a");
         $graphic->setAttribute('ItemTransform', '1 0 0 1 0 0');
         $graphic->setAttribute('Link', "{$this->id}0b");
-        $graphic->setAttribute('LinkResourceURI', "file:Links/picture$this->index.png");
+        $graphic->setAttribute('LinkResourceURI', "file:Links/picture$this->id$this->index.png");
         $graphic->setAttribute('GraphicTypeName', '$ID/Portable Network Graphics (PNG)');
         $graphicXml->documentElement->appendChild($graphic);
 

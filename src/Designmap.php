@@ -43,9 +43,11 @@ class Designmap
     public function clear()
     {
         // clear spreads
-        foreach($this->findNs('Spread') as $spread) {
-            $spread->parentNode->removeChild($spread);
+        $spreads = $this->findNs('Spread');
+        while($spreads->length > 0) {
+            $spread = $spreads->item(0);
             $file = static::$cwd . '/' . $spread->getAttribute('src');
+            $spread->parentNode->removeChild($spread);
             file_exists($file) && unlink($file);
         }
     }

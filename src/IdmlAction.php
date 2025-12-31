@@ -4,16 +4,19 @@ namespace Santa\Indesign;
 
 class IdmlAction
 {
-    public function __invoke($json)
+    public function __invoke($json, $spreadCnt)
     {
         $design = Designmap::get();
         $design->clear();
-        $design->addSpread(Spread::make());
-        $design->addSpread(Spread::make());
+        for($i = 0; $i < $spreadCnt; $i++) {
+            $design->addSpread(Spread::make(2));
+        }
         $design->addLinks();
         $design->save();
 
         $story = new Story('u2b8');
+
+        // dd($json);
 
         foreach ($json as $order) {
 
@@ -32,7 +35,7 @@ class IdmlAction
             }
 
             if ("$order->ctext") {
-                $this->setText("$order->ctext", $story, $order);
+                $this->setText(rtrim($order->ctext).PHP_EOL, $story, $order);
             }
         }
 
